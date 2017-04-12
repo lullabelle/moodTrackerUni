@@ -19,6 +19,6 @@ public class MainActivity extends AppCompatActivity {
     public void countRecords() {
         int recordCount = new EntryController(this).count();
         TextView textViewRecordCount = (TextView) findViewById(R.id.textViewRecordCount);
-        textViewRecordCount.setText(recordCount + " entries found.");
+        textViewRecordCount.setText(recordCount + " mood entries found");
     }
 }
