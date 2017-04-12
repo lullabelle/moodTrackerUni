@@ -25,5 +25,16 @@ public class EntryController extends DatabaseConnection {
 
         return createSuccessful;
     }
+    public int count() {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String sql = "SELECT * FROM entry";
+        int recordCount = db.rawQuery(sql, null).getCount();
+        db.close();
+
+        return recordCount;
+
+    }
 
 }

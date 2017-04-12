@@ -42,7 +42,7 @@ public class OnClickListenerCreateEntry implements View.OnClickListener {
                                 }else{
                                     Toast.makeText(context, "Unable to save mood information.", Toast.LENGTH_SHORT).show();
                                 }
-
+                                ((MainActivity) context).countRecords();
 
                             }
 
