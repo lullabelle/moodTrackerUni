@@ -28,11 +28,13 @@ public class OnClickListenerCreateEntry implements View.OnClickListener {
                                 dialog.cancel();
                                 String moodName = editTextMoodName.getText().toString();
                                 String moodLocation = editTextMoodLocation.getText().toString();
+
                                 //add date field capture
                                 //add image picker
                                 Entry entry = new Entry();
                                 entry.moodName = moodName;
                                 entry.location = moodLocation;
+
                                 //add date field capture
                                 //add image picker
                                 boolean createSuccessful = new EntryController(context).create(entry);
