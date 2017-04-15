@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         List<Entry> entries = new EntryController(this).read();
         if(entries.size() >0){
-            for(Entry ent : entries){
+            for(Entry ent : entries) {
                 String moodName = ent.moodName;
                 String location = ent.location;
                 String timeStamp = ent.timeStamp;
@@ -41,9 +41,23 @@ public class MainActivity extends AppCompatActivity {
 
                 String textViewEntries = moodName + " - " + location + " - " + timeStamp;
                 TextView textViewMoodEntries = new TextView(this);
-                textViewMoodEntries.setPadding(0,20,0,20);
-                textViewMoodEntries.setCompoundDrawablesWithIntrinsicBounds(
-                        R.mipmap.amazing , 0, 0, 0);
+                textViewMoodEntries.setPadding(0, 20, 0, 20);
+                //add image to correspond to mood category
+                       if (moodRating == 5) {
+                            textViewMoodEntries.setCompoundDrawablesWithIntrinsicBounds(
+                                    R.mipmap.amazing, 0, 0, 0);
+                        } else if (moodRating == 4){
+                            textViewMoodEntries.setCompoundDrawablesWithIntrinsicBounds(
+                                    R.mipmap.happy, 0, 0, 0);
+                        }else if (moodRating == 3) {
+                        textViewMoodEntries.setCompoundDrawablesWithIntrinsicBounds(
+                                R.mipmap.soso, 0, 0, 0);
+                        }else if (moodRating == 2) {
+                        textViewMoodEntries.setCompoundDrawablesWithIntrinsicBounds(
+                                R.mipmap.down, 0, 0, 0);
+                        }else textViewMoodEntries.setCompoundDrawablesWithIntrinsicBounds(
+                            R.mipmap.terrible, 0, 0, 0);
+
                 textViewMoodEntries.setText(textViewEntries);
 
 
