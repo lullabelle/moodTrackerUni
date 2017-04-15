@@ -39,10 +39,13 @@ public class MainActivity extends AppCompatActivity {
                 String timeStamp = ent.timeStamp;
                 int moodRating = ent.moodRating;
 
-                String textViewEntries = moodName + " - " + location + " - " + timeStamp + " - " + moodRating;
+                String textViewEntries = moodName + " - " + location + " - " + timeStamp;
                 TextView textViewMoodEntries = new TextView(this);
-                textViewMoodEntries.setPadding(0,10,0,10);
+                textViewMoodEntries.setPadding(0,20,0,20);
+                textViewMoodEntries.setCompoundDrawablesWithIntrinsicBounds(
+                        R.mipmap.amazing , 0, 0, 0);
                 textViewMoodEntries.setText(textViewEntries);
+
 
                 linearLayoutEntries.addView(textViewMoodEntries);
             }
