@@ -74,7 +74,7 @@
             android:layout_below="@+id/card_view" >
 
             <LinearLayout
-                android:id="@+id/linearLayoutRecords"
+                android:id="@+id/linearLayoutEntries"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >

@@ -24,7 +24,11 @@
         android:hint="where are you?"
         android:singleLine="true" />
 
-    <!--add date field capture-->
-    <!--add image picker-->
+    <Spinner
+        android:id="@+id/spinnerMood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextLocation"
+        android:background="@mipmap/happy" />
 
 </RelativeLayout>
