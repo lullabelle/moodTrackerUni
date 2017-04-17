@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseConnection extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "MoodDatabase2";
+    private static final String DATABASE_NAME = "MoodDatabase1";
 
     public DatabaseConnection(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -17,10 +17,8 @@ public class DatabaseConnection extends SQLiteOpenHelper {
             "( id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "moodName TEXT, " +
             "location TEXT," +
-            "timeStamp TEXT," +
+            "timeStamp DATETIME DEFAULT CURRENT_TIMESTAMP," +
             "moodRating INT ) ";
-
-
 
 
     @Override

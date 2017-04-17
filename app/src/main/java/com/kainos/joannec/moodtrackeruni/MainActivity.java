@@ -1,8 +1,11 @@
 package com.kainos.joannec.moodtrackeruni;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -10,6 +13,20 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    public Button chartButton;
+    public void init(){
+
+        chartButton  = (Button) findViewById(R.id.btn_charts);
+        chartButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent i = new Intent(MainActivity.this, Pie2Activity.class);
+                startActivity(i);
+            }
+        });
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +36,18 @@ public class MainActivity extends AppCompatActivity {
         buttonCreateEntry.setOnClickListener(new OnClickListenerCreateEntry());
         countRecords();
         readEntries();
+        init();
     }
+   /* private void chartButton(){
+        Button chartButton = (Button) findViewById(R.id.btn_charts);
+        chartButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent i = new Intent(getApplicationContext(), Pie2Activity.class);
+                startActivity(i);
+            }
+        });
+    }*/
     public void countRecords() {
         int recordCount = new EntryController(this).count();
         TextView textViewRecordCount = (TextView) findViewById(R.id.textViewRecordCount);
