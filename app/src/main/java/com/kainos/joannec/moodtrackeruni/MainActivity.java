@@ -38,16 +38,7 @@ public class MainActivity extends AppCompatActivity {
         readEntries();
         init();
     }
-   /* private void chartButton(){
-        Button chartButton = (Button) findViewById(R.id.btn_charts);
-        chartButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent i = new Intent(getApplicationContext(), Pie2Activity.class);
-                startActivity(i);
-            }
-        });
-    }*/
+
     public void countRecords() {
         int recordCount = new EntryController(this).count();
         TextView textViewRecordCount = (TextView) findViewById(R.id.textViewRecordCount);

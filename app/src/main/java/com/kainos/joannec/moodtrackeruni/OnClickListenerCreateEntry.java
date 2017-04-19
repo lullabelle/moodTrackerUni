@@ -78,6 +78,8 @@ public class OnClickListenerCreateEntry implements View.OnClickListener {
                                 ((MainActivity) context).countRecords();
                                 ((MainActivity) context).readEntries();
 
+
+
                             }
 
                         }).show();

@@ -21,18 +21,14 @@ public class DatabaseConnection extends SQLiteOpenHelper {
             "moodRating INT ) ";
 
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(sql_create);
 
-
-
-
-
-/*        String sql = "DROP TABLE IF EXISTS moodEntry";
-        db.execSQL(sql);*/
         }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -45,4 +41,4 @@ public class DatabaseConnection extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-}
+        }

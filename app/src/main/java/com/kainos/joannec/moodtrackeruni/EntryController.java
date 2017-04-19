@@ -9,20 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class EntryController extends DatabaseConnection {
-
+public class EntryController extends DatabaseConnection  {
     public EntryController(Context context) {
         super(context);
     }
 
+
     public boolean create(Entry entry) {
         ContentValues values = new ContentValues();
+
 //adds new entry to the database
         values.put("moodName", entry.moodName);
         values.put("location", entry.location);
-        //values.put("timeStamp", getDateTime());
         values.put("moodRating", entry.moodRating);
-        //String timeStamp = getDateTime();
+
         SQLiteDatabase db = this.getWritableDatabase();
 
         boolean createSuccessful = db.insert("moodEntry", null, values) > 0;
@@ -31,13 +31,7 @@ public class EntryController extends DatabaseConnection {
         return createSuccessful;
     }
 
-    //gets local system time to add to date field
-/*    private String getDateTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        Date date = new Date();
-        return dateFormat.format(date);
-    }*/
+
 
     //counts records in the database
     public int count() {
@@ -54,6 +48,7 @@ public class EntryController extends DatabaseConnection {
 
     // reads records from the database
     public List<Entry> read() {
+
         List<Entry> entryList = new ArrayList<Entry>();
         String sql = "SELECT * FROM moodEntry ORDER BY timeStamp DESC";
         SQLiteDatabase db = this.getWritableDatabase();
@@ -80,23 +75,24 @@ public class EntryController extends DatabaseConnection {
         return entryList;
 
     }
-
+    Context c = App.getContext();
     //reads moodRatings from the database as a total count for each mood type for date == today
     public int[] todayPie() {
-        int[] today_data = new int[]{2, 2, 2, 2, 2};
-        //SQLiteDatabase db = this.getWritableDatabase();
-        /*String sql = "select count(moodRating) AS counter from moodEntry where moodRating = 1 and date('now');";
+
+        int[] today_data = new int[]{0, 0, 0, 0, 0};
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql1 = "select count(moodRating) AS counter from moodEntry where moodRating = 1 and date('now');";
         String sql2 = "select count(moodRating) from moodEntry where moodRating = 2 and date('now');";
         String sql3 = "select count(moodRating) from moodEntry where moodRating = 3 and date('now');";
         String sql4 = "select count(moodRating) from moodEntry where moodRating = 4 and date('now');";
-        String sql5 = "select count(moodRating) from moodEntry where moodRating = 5 and date('now');";*/
+        String sql5 = "select count(moodRating) from moodEntry where moodRating = 5 and date('now');";
 
-        //Cursor cursor1 = db.rawQuery(sql1, null);
-        //cursor1.moveToFirst();
-        //System.out.println(cursor1.getInt(0));
-        //today_data[0] = Integer.parseInt(cursor1.getString(cursor1.getColumnIndex("counter")));
-        //cursor1.close();
-/*        Cursor cursor2 = db.rawQuery(sql2, null);
+        Cursor cursor1 = db.rawQuery(sql1, null);
+        cursor1.moveToFirst();
+        System.out.println(cursor1.getInt(0));
+        today_data[0] = Integer.parseInt(cursor1.getString(cursor1.getColumnIndex("counter")));
+        cursor1.close();
+     Cursor cursor2 = db.rawQuery(sql2, null);
         cursor2.moveToFirst();
         today_data[1] = cursor2.getInt(0);
         cursor2.close();
@@ -111,17 +107,19 @@ public class EntryController extends DatabaseConnection {
         Cursor cursor5 = db.rawQuery(sql5, null);
         cursor5.moveToFirst();
         today_data[4] = cursor5.getInt(0);
-        cursor5.close();*/
+        cursor5.close();
 
-       // for (int i = 0; i < 5; i++) {
-        //    String sql = "select count(moodRating) from moodEntry where moodRating = " + i + 1 + " and date('now');";
-        //    Cursor cursor = db.rawQuery(sql, null);
-        //    cursor.moveToFirst();
-        //    today_data[i] = cursor.getInt(0);
-        //    cursor.close();
-       // }
-        //db.close();
+       /*for (int i = 0; i < 5; i++) {
+        String sql = "select count(moodRating) from moodEntry where moodRating = " + i + 1 + " and date('now');";
+           Cursor cursor = db.rawQuery(sql, null);
+           cursor.moveToFirst();
+          today_data[i] = cursor.getInt(0);
+           cursor.close();*/
+
+       db.close();
         return today_data;
     }
+
+
 }
 
