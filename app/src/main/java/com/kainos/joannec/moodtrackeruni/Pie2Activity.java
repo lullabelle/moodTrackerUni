@@ -27,7 +27,7 @@ public class Pie2Activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pie2);
         new App().setContext(this);
-        //todayPieData();
+
 
         Log.d(TAG, "onCreate: starting to create chart");
 

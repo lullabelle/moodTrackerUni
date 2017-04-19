@@ -81,7 +81,7 @@ public class EntryController extends DatabaseConnection  {
 
         int[] today_data = new int[]{0, 0, 0, 0, 0};
         SQLiteDatabase db = this.getWritableDatabase();
-        String sql1 = "select count(moodRating) AS counter from moodEntry where moodRating = 1 and date('now');";
+        /*String sql1 = "select count(moodRating) AS counter from moodEntry where moodRating = 1 and date('now');";
         String sql2 = "select count(moodRating) from moodEntry where moodRating = 2 and date('now');";
         String sql3 = "select count(moodRating) from moodEntry where moodRating = 3 and date('now');";
         String sql4 = "select count(moodRating) from moodEntry where moodRating = 4 and date('now');";
@@ -107,15 +107,16 @@ public class EntryController extends DatabaseConnection  {
         Cursor cursor5 = db.rawQuery(sql5, null);
         cursor5.moveToFirst();
         today_data[4] = cursor5.getInt(0);
-        cursor5.close();
+        cursor5.close();*/
 
-       /*for (int i = 0; i < 5; i++) {
-        String sql = "select count(moodRating) from moodEntry where moodRating = " + i + 1 + " and date('now');";
+       for (int i = 0; i < 5; i++) {
+           int temp = i + 1;
+           String sql = "select count(moodRating) from moodEntry where moodRating = " + temp + " and date('now');";
            Cursor cursor = db.rawQuery(sql, null);
            cursor.moveToFirst();
-          today_data[i] = cursor.getInt(0);
-           cursor.close();*/
-
+           today_data[i] = cursor.getInt(0);
+           cursor.close();
+       }
        db.close();
         return today_data;
     }
