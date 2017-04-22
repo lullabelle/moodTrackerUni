@@ -23,6 +23,9 @@
         <activity android:name=".Pie2Activity">
 
         </activity>
+        <activity android:name=".WordCloud">
+
+        </activity>
     </application>
 
 </manifest>
