@@ -2,6 +2,9 @@
     <string name="app_name">Mood Tracker</string>
     <string name="action_settings">Settings</string>
     <string name="record_count">mood entries found</string>
+    <string name="title_home">Moods</string>
+    <string name="title_dashboard">Dashboards</string>
+    <string name="title_word_clouds">Word Clouds</string>
 
     <string-array name="moods_array">
         <item>amazing!</item>

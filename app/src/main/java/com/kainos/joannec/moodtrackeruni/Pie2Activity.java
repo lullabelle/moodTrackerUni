@@ -1,9 +1,15 @@
 package com.kainos.joannec.moodtrackeruni;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
@@ -14,23 +20,38 @@ import com.github.mikephil.charting.data.PieEntry;
 
 import java.util.ArrayList;
 
-public class Pie2Activity extends Activity {
-
-    private static String TAG = "Pie2Activity";
-
-
-
+public class Pie2Activity extends Activity implements View.OnClickListener {
+    //variables
     PieChart pieChart;
+    private static String TAG = "Pie2Activity";
+    private TextView mTextMessage;
+    // adds navigation location text to top of each screen
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    mTextMessage.setText(R.string.title_home);
+                    return true;
+                case R.id.navigation_dashboard:
+                    mTextMessage.setText(R.string.title_dashboard);
+                    return true;
+                case R.id.navigation_notifications:
+                    mTextMessage.setText(R.string.title_word_clouds);
+                    return true;
+            }
+            return false;
+        }
+
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pie2);
         new App().setContext(this);
-
-
-        Log.d(TAG, "onCreate: starting to create chart");
-
         // add pie chart view for today
         pieChart =(PieChart) findViewById(R.id.today_chart);
         Description desc = new Description();
@@ -43,7 +64,33 @@ public class Pie2Activity extends Activity {
         pieChart.setCenterTextSize(10);
         pieChart.setDrawEntryLabels(true);
         addDataSet();
+        //bottom navigation bar
+        mTextMessage = (TextView) findViewById(R.id.pie_message);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationPie);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        findViewById(R.id.navigation_home).setOnClickListener(this);
+        findViewById(R.id.navigation_dashboard).setOnClickListener(this);
+        findViewById(R.id.navigation_notifications).setOnClickListener(this);
 
+    }
+//METHODS
+    // bottom navigation bar
+    @Override
+    public void onClick(View v) {
+        Class view_class = null;
+
+        switch(v.getId()){
+            case R.id.navigation_home:
+                view_class = MainActivity.class;
+                break;
+            case R.id.navigation_dashboard:
+                view_class = Pie2Activity.class;
+                break;
+            case R.id.navigation_notifications:
+                view_class = WordCloud.class;
+                break;
+        }
+        startActivity(new Intent(this, view_class));
     }
     private void addDataSet(){
         String xData []= {"terrible","down","so-so","happy","amazing"};
