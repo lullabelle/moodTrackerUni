@@ -62,6 +62,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //METHODS
 // bottom navigation bar
     @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
+    }
+    @Override
     public void onClick(View v) {
         Class view_class = null;
 
@@ -73,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 view_class = Pie2Activity.class;
                 break;
             case R.id.navigation_notifications:
-                view_class = WordCloud.class;
+                view_class = Settings.class;
                 break;
         }
         startActivity(new Intent(this, view_class));

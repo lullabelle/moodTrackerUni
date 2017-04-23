@@ -77,15 +77,30 @@ public class EntryController extends DatabaseConnection  {
     }
     Context c = App.getContext();
     //reads moodRatings from the database as a total count for each mood type for date == today
-    public int[] todayPie() {
-
+    public int[] generatePie(String date_param) {
+        String date = "";
+        if (date_param == "today"){
+            date = " and DATE(timeStamp) = date('now');";
+        }else if (date_param == "yesterday"){
+            date = " and DATE(timeStamp) = date('now', '-1 day');";
+        }else if (date_param == "2 days ago") {
+            date = " and DATE(timeStamp) = date('now', '-2 days');";
+        }else if (date_param == "3 days ago") {
+            date = " and DATE(timeStamp)  = date('now', '-3 days');";
+        }else if (date_param == "4 days ago") {
+            date = " and DATE(timeStamp)  = date('now', '-4 days');";
+        }else if (date_param == "5 days ago") {
+            date = " and DATE(timeStamp)  = date('now', '-5 days');";
+        } else if (date_param == "1 week"){
+            date = " and DATE(timeStamp) > date('now', '-6 days');";
+        }
         int[] today_data = new int[]{0, 0, 0, 0, 0};
         SQLiteDatabase db = this.getWritableDatabase();
 
 
        for (int i = 0; i < 5; i++) {
            int temp = i + 1;
-           String sql = "select count(moodRating) from moodEntry where moodRating = " + temp + " and date('now');";
+           String sql = "select count(moodRating) from moodEntry where moodRating = " + temp + date;
            Cursor cursor = db.rawQuery(sql, null);
            cursor.moveToFirst();
            today_data[i] = cursor.getInt(0);

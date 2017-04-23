@@ -23,23 +23,93 @@
         android:text="@string/app_name"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    <TextView
-        android:id="@+id/pie_message"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/title_home" />
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/today_chart"
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        android:layout_below="@+id/pie_message"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp" />
+        <ScrollView
+            android:id="@+id/scrollViewPies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar">
+
+            <LinearLayout
+                android:id="@+id/linearLayoutEntries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/pie_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/linearLayoutEntries"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:text="@string/title_dashboard" />
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/today_chart"
+                    android:layout_width="368dp"
+                    android:layout_height="250dp"
+                    android:layout_below="@+id/pie_message"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="8dp" />
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/yesterday_chart"
+                    android:layout_width="368dp"
+                    android:layout_height="250dp"
+                    android:layout_below="@+id/today_chart"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="8dp" />
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/twodays_chart"
+                    android:layout_width="368dp"
+                    android:layout_height="250dp"
+                    android:layout_below="@+id/yesterday_chart"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="8dp" />
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/threedays_chart"
+                    android:layout_width="368dp"
+                    android:layout_height="250dp"
+                    android:layout_below="@+id/twodays_chart"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="8dp" />
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/fourdays_chart"
+                    android:layout_width="368dp"
+                    android:layout_height="250dp"
+                    android:layout_below="@+id/threedays_chart"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="8dp" />
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/fivedays_chart"
+                    android:layout_width="368dp"
+                    android:layout_height="250dp"
+                    android:layout_below="@+id/threedays_chart"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="8dp" />
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/week_chart"
+                    android:layout_width="368dp"
+                    android:layout_height="250dp"
+                    android:layout_below="@+id/fivedays_chart"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="20dp" />
+                <TextView
+                    android:id="@+id/filler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/week_chart"
+                     />
+            </LinearLayout>
+        </ScrollView>
+
     </RelativeLayout>
 
     <android.support.design.widget.BottomNavigationView

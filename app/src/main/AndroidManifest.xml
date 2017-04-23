@@ -23,8 +23,15 @@
         <activity android:name=".Pie2Activity">
 
         </activity>
-        <activity android:name=".WordCloud">
+        <activity android:name=".Settings">
 
+        </activity>
+        <activity android:name=".NotificationView"
+            android:label="Details of notification"
+            android:parentActivityName=".Settings">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Settings"/>
         </activity>
     </application>
 

@@ -4,7 +4,9 @@
     <string name="record_count">mood entries found</string>
     <string name="title_home">Moods</string>
     <string name="title_dashboard">Dashboards</string>
-    <string name="title_word_clouds">Word Clouds</string>
+    <string name="title_word_clouds">Weekly Stats</string>
+    <string name="notification_text">Settings &amp; Notifications</string>
+
 
     <string-array name="moods_array">
         <item>amazing!</item>

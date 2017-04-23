@@ -1,15 +1,20 @@
 package com.kainos.joannec.moodtrackeruni;
 
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.NotificationCompat;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
-public class WordCloud extends Activity implements View.OnClickListener {
+public class Settings extends Activity implements View.OnClickListener {
 //Variables
 private TextView mTextMessage;
     // adds navigation location text to top of each screen
@@ -35,9 +40,17 @@ private TextView mTextMessage;
     };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Button b1;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wordcloud);
+        setContentView(R.layout.activity_settings);
         new App().setContext(this);
+        b1 = (Button)findViewById(R.id.button);
+        b1.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View v) {
+                                      addNotification();
+                                  }
+        });
 
         //bottom navigation bar
         mTextMessage = (TextView) findViewById(R.id.cloud_message);
@@ -49,6 +62,11 @@ private TextView mTextMessage;
     }
 //METHODS
 // bottom navigation bar
+    @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
+    }
     @Override
     public void onClick(View v) {
         Class view_class = null;
@@ -65,6 +83,23 @@ private TextView mTextMessage;
                 break;
         }
         startActivity(new Intent(this, view_class));
+    }
+
+    private void addNotification() {
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.bell)
+                        .setContentTitle("Notification")
+                        .setContentText("you have a mood logging notification");
+
+        Intent notificationIntent = new Intent(this, NotificationView.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(contentIntent);
+
+        // Add as notification
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(0, builder.build());
     }
 
 }
