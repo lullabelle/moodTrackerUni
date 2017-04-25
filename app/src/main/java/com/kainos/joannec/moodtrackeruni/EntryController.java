@@ -109,23 +109,7 @@ public class EntryController extends DatabaseConnection  {
        db.close();
         return today_data;
     }
-    public int[] yesterdayPie() {
 
-        int[] yesterday_data = new int[]{0, 0, 0, 0, 0};
-        SQLiteDatabase db = this.getWritableDatabase();
-
-
-        for (int i = 0; i < 5; i++) {
-            int temp = i + 1;
-            String sql = "select count(moodRating) from moodEntry where moodRating = " + temp + " and date('-1 day');";
-            Cursor cursor = db.rawQuery(sql, null);
-            cursor.moveToFirst();
-            yesterday_data[i] = cursor.getInt(0);
-            cursor.close();
-        }
-        db.close();
-        return yesterday_data;
-    }
 
 }
 

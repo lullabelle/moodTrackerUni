@@ -70,7 +70,7 @@ public class Pie2Activity extends Activity implements View.OnClickListener {
         pieChart.setTransparentCircleAlpha(0);
         pieChart.setCenterText("Today");
         pieChart.setCenterTextSize(10);
-        pieChart.setDrawEntryLabels(true);
+        pieChart.setDrawEntryLabels(false);
         addDataSet();
 //add Pie Chart view for yesterday
         pieChart_yesterday = (PieChart) findViewById(R.id.yesterday_chart);
@@ -82,7 +82,7 @@ public class Pie2Activity extends Activity implements View.OnClickListener {
         pieChart_yesterday.setTransparentCircleAlpha(0);
         pieChart_yesterday.setCenterText("Yesterday");
         pieChart_yesterday.setCenterTextSize(10);
-        pieChart_yesterday.setDrawEntryLabels(true);
+        pieChart_yesterday.setDrawEntryLabels(false);
         addYestDataSet();
         //add Pie Chart view for  2days ago
         pieChart2 = (PieChart) findViewById(R.id.twodays_chart);
@@ -94,7 +94,7 @@ public class Pie2Activity extends Activity implements View.OnClickListener {
         pieChart2.setTransparentCircleAlpha(0);
         pieChart2.setCenterText("2 days ago");
         pieChart2.setCenterTextSize(10);
-        pieChart2.setDrawEntryLabels(true);
+        pieChart2.setDrawEntryLabels(false);
         add2dayDataSet();
         //add Pie Chart view for 3 days ago
         pieChart3 = (PieChart) findViewById(R.id.threedays_chart);
@@ -106,7 +106,7 @@ public class Pie2Activity extends Activity implements View.OnClickListener {
         pieChart3.setTransparentCircleAlpha(0);
         pieChart3.setCenterText("3 days ago");
         pieChart3.setCenterTextSize(10);
-        pieChart3.setDrawEntryLabels(true);
+        pieChart3.setDrawEntryLabels(false);
         add3DayDataSet();
         //add Pie Chart view for yesterday
         pieChart4 = (PieChart) findViewById(R.id.fourdays_chart);
@@ -118,7 +118,7 @@ public class Pie2Activity extends Activity implements View.OnClickListener {
         pieChart4.setTransparentCircleAlpha(0);
         pieChart4.setCenterText("4 days ago");
         pieChart4.setCenterTextSize(10);
-        pieChart4.setDrawEntryLabels(true);
+        pieChart4.setDrawEntryLabels(false);
         add4DayDataSet();
         //add Pie Chart view for yesterday
         pieChart5 = (PieChart) findViewById(R.id.fivedays_chart);
@@ -130,7 +130,7 @@ public class Pie2Activity extends Activity implements View.OnClickListener {
         pieChart5.setTransparentCircleAlpha(0);
         pieChart5.setCenterText("5 days ago");
         pieChart5.setCenterTextSize(10);
-        pieChart5.setDrawEntryLabels(true);
+        pieChart5.setDrawEntryLabels(false);
         add5DayDataSet();
 //add PieChart view for previous week
         pieChart_week = (PieChart) findViewById(R.id.week_chart);
@@ -142,7 +142,7 @@ public class Pie2Activity extends Activity implements View.OnClickListener {
         pieChart_week.setTransparentCircleAlpha(0);
         pieChart_week.setCenterText("This Week");
         pieChart_week.setCenterTextSize(10);
-        pieChart_week.setDrawEntryLabels(true);
+        pieChart_week.setDrawEntryLabels(false);
         addWeekDataSet();
 
         //bottom navigation bar
@@ -188,30 +188,26 @@ public class Pie2Activity extends Activity implements View.OnClickListener {
         Log.d(TAG, "addDataSet started");
         ArrayList<PieEntry> yEntrys = new ArrayList<PieEntry>();
         ArrayList<String> xEntrys = new ArrayList<String>();
-
+        ArrayList<Integer> colors = new ArrayList<>();
         for (int i = 0; i < yData.length; i++) {
-            yEntrys.add(new PieEntry(yData[i], i));
+            if (yData[i] != 0){
+            yEntrys.add(new PieEntry(yData[i], xData[i]));
+            if (i == 0){colors.add(Color.rgb(144, 164, 174));}//terrible
+                if (i == 1){colors.add(Color.rgb(3, 155, 229));}//down
+                if (i == 2){colors.add(Color.rgb(142, 101, 255));}// soso
+                if (i == 3){colors.add(Color.rgb(59, 255, 162));}//happy
+                if (i == 4){colors.add(Color.rgb(255, 209, 33));}//amazing
+            }
         }
 
-
-        for (int i = 0; i < 5; i++) {
-            xEntrys.add(xData[i]);
-        }
         // create Pie Data set
-        PieDataSet pieDataSet = new PieDataSet(yEntrys, "Mood Categories");
+        PieDataSet pieDataSet = new PieDataSet(yEntrys, "");
         pieDataSet.setSliceSpace(2);
         pieDataSet.setValueTextSize(12);
-
-        // colours
-        ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.rgb(144, 164, 174));
-        colors.add(Color.rgb(3, 155, 229));
-        colors.add(Color.rgb(142, 101, 255));
-        colors.add(Color.rgb(59, 255, 162));
-        colors.add(Color.rgb(255, 209, 33));
-        colors.add(Color.rgb(144, 164, 174));
-
+        //add Colours to Pie Data Set
         pieDataSet.setColors(colors);
+
+
 
         //add legend to a chart
 
@@ -221,6 +217,7 @@ public class Pie2Activity extends Activity implements View.OnClickListener {
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
         legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         legend.setDrawInside(false);
+
 
         // create pie data object
         PieData pieData = new PieData(pieDataSet);
@@ -237,28 +234,24 @@ public class Pie2Activity extends Activity implements View.OnClickListener {
         Log.d(TAG, "addDataSet started");
         ArrayList<PieEntry> yEntrys = new ArrayList<PieEntry>();
         ArrayList<String> xEntrys = new ArrayList<String>();
-
+        ArrayList<Integer> colors = new ArrayList<>();
         for (int i = 0; i < yData.length; i++) {
-            yEntrys.add(new PieEntry(yData[i], i));
+            if (yData[i] != 0){
+                yEntrys.add(new PieEntry(yData[i], xData[i]));
+                if (i == 0){colors.add(Color.rgb(144, 164, 174));}//terrible
+                if (i == 1){colors.add(Color.rgb(3, 155, 229));}//down
+                if (i == 2){colors.add(Color.rgb(142, 101, 255));}// soso
+                if (i == 3){colors.add(Color.rgb(59, 255, 162));}//happy
+                if (i == 4){colors.add(Color.rgb(255, 209, 33));}//amazing
+            }
         }
 
-
-        for (int i = 0; i < 5; i++) {
-            xEntrys.add(xData[i]);
-        }
         // create Pie Data set
-        PieDataSet pieDataSet = new PieDataSet(yEntrys, "Mood Cats");
+        PieDataSet pieDataSet = new PieDataSet(yEntrys, "");
         pieDataSet.setSliceSpace(2);
         pieDataSet.setValueTextSize(12);
 
-        // colours
-        ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.rgb(144, 164, 174));
-        colors.add(Color.rgb(3, 155, 229));
-        colors.add(Color.rgb(142, 101, 255));
-        colors.add(Color.rgb(59, 255, 162));
-        colors.add(Color.rgb(255, 209, 33));
-        colors.add(Color.rgb(144, 164, 174));
+        // add colours to Pie Data Set
 
         pieDataSet.setColors(colors);
 
@@ -284,28 +277,26 @@ public class Pie2Activity extends Activity implements View.OnClickListener {
         Log.d(TAG, "addDataSet started");
         ArrayList<PieEntry> yEntrys = new ArrayList<PieEntry>();
         ArrayList<String> xEntrys = new ArrayList<String>();
-
+        ArrayList<Integer> colors = new ArrayList<>();
         for (int i = 0; i < yData.length; i++) {
-            yEntrys.add(new PieEntry(yData[i], i));
+            if (yData[i] != 0){
+                yEntrys.add(new PieEntry(yData[i], xData[i]));
+                if (i == 0){colors.add(Color.rgb(144, 164, 174));}//terrible
+                if (i == 1){colors.add(Color.rgb(3, 155, 229));}//down
+                if (i == 2){colors.add(Color.rgb(142, 101, 255));}// soso
+                if (i == 3){colors.add(Color.rgb(59, 255, 162));}//happy
+                if (i == 4){colors.add(Color.rgb(255, 209, 33));}//amazing
+            }
         }
 
 
-        for (int i = 0; i < 5; i++) {
-            xEntrys.add(xData[i]);
-        }
+
         // create Pie Data set
-        PieDataSet pieDataSet = new PieDataSet(yEntrys, "Mood Cats");
+        PieDataSet pieDataSet = new PieDataSet(yEntrys, "");
         pieDataSet.setSliceSpace(2);
         pieDataSet.setValueTextSize(12);
 
-        // colours
-        ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.rgb(144, 164, 174));
-        colors.add(Color.rgb(3, 155, 229));
-        colors.add(Color.rgb(142, 101, 255));
-        colors.add(Color.rgb(59, 255, 162));
-        colors.add(Color.rgb(255, 209, 33));
-        colors.add(Color.rgb(144, 164, 174));
+        //add colours to Pie Data Set
 
         pieDataSet.setColors(colors);
 
@@ -332,28 +323,25 @@ public class Pie2Activity extends Activity implements View.OnClickListener {
     Log.d(TAG, "addDataSet started");
     ArrayList<PieEntry> yEntrys = new ArrayList<PieEntry>();
     ArrayList<String> xEntrys = new ArrayList<String>();
+        ArrayList<Integer> colors = new ArrayList<>();
+        for (int i = 0; i < yData.length; i++) {
+            if (yData[i] != 0){
+                yEntrys.add(new PieEntry(yData[i], xData[i]));
+                if (i == 0){colors.add(Color.rgb(144, 164, 174));}//terrible
+                if (i == 1){colors.add(Color.rgb(3, 155, 229));}//down
+                if (i == 2){colors.add(Color.rgb(142, 101, 255));}// soso
+                if (i == 3){colors.add(Color.rgb(59, 255, 162));}//happy
+                if (i == 4){colors.add(Color.rgb(255, 209, 33));}//amazing
+            }
+        }
 
-    for (int i = 0; i < yData.length; i++) {
-        yEntrys.add(new PieEntry(yData[i], i));
-    }
 
-
-    for (int i = 0; i < 5; i++) {
-        xEntrys.add(xData[i]);
-    }
     // create Pie Data set
-    PieDataSet pieDataSet = new PieDataSet(yEntrys, "Mood Cats");
+    PieDataSet pieDataSet = new PieDataSet(yEntrys, "");
     pieDataSet.setSliceSpace(2);
     pieDataSet.setValueTextSize(12);
 
-    // colours
-    ArrayList<Integer> colors = new ArrayList<>();
-    colors.add(Color.rgb(144, 164, 174));
-    colors.add(Color.rgb(3, 155, 229));
-    colors.add(Color.rgb(142, 101, 255));
-    colors.add(Color.rgb(59, 255, 162));
-    colors.add(Color.rgb(255, 209, 33));
-    colors.add(Color.rgb(144, 164, 174));
+    //add colours tp Pie Data Chart
 
     pieDataSet.setColors(colors);
 
@@ -380,28 +368,25 @@ public class Pie2Activity extends Activity implements View.OnClickListener {
         Log.d(TAG, "addDataSet started");
         ArrayList<PieEntry> yEntrys = new ArrayList<PieEntry>();
         ArrayList<String> xEntrys = new ArrayList<String>();
-
+        ArrayList<Integer> colors = new ArrayList<>();
         for (int i = 0; i < yData.length; i++) {
-            yEntrys.add(new PieEntry(yData[i], i));
+            if (yData[i] != 0){
+                yEntrys.add(new PieEntry(yData[i], xData[i]));
+                if (i == 0){colors.add(Color.rgb(144, 164, 174));}//terrible
+                if (i == 1){colors.add(Color.rgb(3, 155, 229));}//down
+                if (i == 2){colors.add(Color.rgb(142, 101, 255));}// soso
+                if (i == 3){colors.add(Color.rgb(59, 255, 162));}//happy
+                if (i == 4){colors.add(Color.rgb(255, 209, 33));}//amazing
+            }
         }
 
 
-        for (int i = 0; i < 5; i++) {
-            xEntrys.add(xData[i]);
-        }
         // create Pie Data set
-        PieDataSet pieDataSet = new PieDataSet(yEntrys, "Mood Cats");
+        PieDataSet pieDataSet = new PieDataSet(yEntrys, "");
         pieDataSet.setSliceSpace(2);
         pieDataSet.setValueTextSize(12);
 
-        // colours
-        ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.rgb(144, 164, 174));
-        colors.add(Color.rgb(3, 155, 229));
-        colors.add(Color.rgb(142, 101, 255));
-        colors.add(Color.rgb(59, 255, 162));
-        colors.add(Color.rgb(255, 209, 33));
-        colors.add(Color.rgb(144, 164, 174));
+        //add colours to Pie Data Chart
 
         pieDataSet.setColors(colors);
 
@@ -428,28 +413,25 @@ public class Pie2Activity extends Activity implements View.OnClickListener {
         Log.d(TAG, "addDataSet started");
         ArrayList<PieEntry> yEntrys = new ArrayList<PieEntry>();
         ArrayList<String> xEntrys = new ArrayList<String>();
-
+        ArrayList<Integer> colors = new ArrayList<>();
         for (int i = 0; i < yData.length; i++) {
-            yEntrys.add(new PieEntry(yData[i], i));
+            if (yData[i] != 0){
+                yEntrys.add(new PieEntry(yData[i], xData[i]));
+                if (i == 0){colors.add(Color.rgb(144, 164, 174));}//terrible
+                if (i == 1){colors.add(Color.rgb(3, 155, 229));}//down
+                if (i == 2){colors.add(Color.rgb(142, 101, 255));}// soso
+                if (i == 3){colors.add(Color.rgb(59, 255, 162));}//happy
+                if (i == 4){colors.add(Color.rgb(255, 209, 33));}//amazing
+            }
         }
 
 
-        for (int i = 0; i < 5; i++) {
-            xEntrys.add(xData[i]);
-        }
         // create Pie Data set
-        PieDataSet pieDataSet = new PieDataSet(yEntrys, "Mood Cats");
+        PieDataSet pieDataSet = new PieDataSet(yEntrys, "");
         pieDataSet.setSliceSpace(2);
         pieDataSet.setValueTextSize(12);
 
-        // colours
-        ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.rgb(144, 164, 174));
-        colors.add(Color.rgb(3, 155, 229));
-        colors.add(Color.rgb(142, 101, 255));
-        colors.add(Color.rgb(59, 255, 162));
-        colors.add(Color.rgb(255, 209, 33));
-        colors.add(Color.rgb(144, 164, 174));
+        //add colours to Pie Data Chart
 
         pieDataSet.setColors(colors);
 
@@ -476,9 +458,16 @@ public class Pie2Activity extends Activity implements View.OnClickListener {
         Log.d(TAG, "addDataSet started");
         ArrayList<PieEntry> yEntrys = new ArrayList<PieEntry>();
         ArrayList<String> xEntrys = new ArrayList<String>();
-
+        ArrayList<Integer> colors = new ArrayList<>();
         for (int i = 0; i < yData.length; i++) {
-            yEntrys.add(new PieEntry(yData[i], i));
+            if (yData[i] != 0){
+                yEntrys.add(new PieEntry(yData[i], xData[i]));
+                if (i == 0){colors.add(Color.rgb(144, 164, 174));}//terrible
+                if (i == 1){colors.add(Color.rgb(3, 155, 229));}//down
+                if (i == 2){colors.add(Color.rgb(142, 101, 255));}// soso
+                if (i == 3){colors.add(Color.rgb(59, 255, 162));}//happy
+                if (i == 4){colors.add(Color.rgb(255, 209, 33));}//amazing
+            }
         }
 
 
@@ -486,18 +475,11 @@ public class Pie2Activity extends Activity implements View.OnClickListener {
             xEntrys.add(xData[i]);
         }
         // create Pie Data set
-        PieDataSet pieDataSet = new PieDataSet(yEntrys, "Mood Cats");
+        PieDataSet pieDataSet = new PieDataSet(yEntrys, "");
         pieDataSet.setSliceSpace(2);
         pieDataSet.setValueTextSize(12);
 
-        // colours
-        ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.rgb(144, 164, 174));
-        colors.add(Color.rgb(3, 155, 229));
-        colors.add(Color.rgb(142, 101, 255));
-        colors.add(Color.rgb(59, 255, 162));
-        colors.add(Color.rgb(255, 209, 33));
-        colors.add(Color.rgb(144, 164, 174));
+        //add colours to Pie Data Chart
 
         pieDataSet.setColors(colors);
 
