@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 //variables
     private TextView mTextMessage;
+    Toolbar mActionBarToolbar;
 // adds navigation location text to top of each screen
  private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -58,8 +60,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.navigation_home).setOnClickListener(this);
         findViewById(R.id.navigation_dashboard).setOnClickListener(this);
         findViewById(R.id.navigation_notifications).setOnClickListener(this);
+
+        mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mActionBarToolbar);
+        getSupportActionBar().setTitle("Mood App");
+
     }
-//METHODS
+
+    //METHODS
 // bottom navigation bar
     @Override
     public void onPause() {
